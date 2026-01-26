@@ -1,0 +1,424 @@
+/* General Styling */
+
+:root {
+    --rem-0-375: 0.375rem;
+    --rem-0-5: 0.5rem;
+    --rem-0-625: 0.625rem;
+    --rem-0-6875: 0.6875rem;
+    --rem-0-875: 0.875rem;
+    --rem-0-75: 0.75rem;
+    --rem-1-25: 1.25rem;
+    --rem-1-75: 1.75rem;
+    --rem-2: 2rem;
+    --rem-2-5: 2.5rem;
+    --rem-31: 31rem;
+
+    --a-50: rgb(255, 251, 235);
+    --a-100: rgb(254, 243, 198);
+    --a-200: rgb(254, 230, 133);
+    --a-400: rgb(255, 185, 0);
+    --a-500: rgb(254, 154, 0);
+    --a-600: rgb(225, 113, 0);
+    --a-700: rgb(187, 77, 0);
+    --b-50: rgb(239, 246, 255);
+    --b-600: rgb(21, 93, 252);
+    --e-50: rgb(236, 253, 245);
+    --e-100: rgb(208, 250, 229);
+    --e-200: rgb(164, 244, 207);
+    --e-700: rgb(0, 122, 85);
+    --e-400: rgb(0, 188, 125);
+    --e-500: rgb(0, 188, 125);
+    --I-50: rgb(238, 242, 255);
+    --I-50-30: rgba(238, 242, 255, 0.3);
+    --I-500: rgb(97, 95, 255);
+    --I-600: rgb(79, 57, 246);
+    --I-700: rgb(67, 45, 215);
+    --o-100: rgb(255, 237, 212);
+    --o-500: rgb(255, 105, 0);
+    --o-600: rgb(245, 74, 0);
+    --P-600: rgb(152, 16, 250);
+    --r-500: rgb(255, 32, 86);
+    --red-50: rgb(254, 242, 242);
+    --red-100: rgb(255, 226, 226);
+    --red-500: rgb(251, 44, 54);
+    --red-600: rgb(231, 0, 11);
+    --s-50: rgb(252, 249, 250);
+    --s-100: rgb(249, 243, 244);
+    --s-200: rgb(226, 232, 240);
+    --s-300: rgb(202, 213, 226);
+    --s-400: rgb(144, 161, 185);
+    --s-500: rgb(98, 116, 142);
+    --s-600: rgb(69, 85, 108);
+    --s-700: rgb(49, 65, 88);
+    --s-800: rgb(29, 41, 61);
+    --s-900: rgb(15, 23, 43);
+    --w-20: rgba(255, 255, 255, 0.2);
+    --w-30: rgba(255, 255, 255, 0.3);
+
+    --header-gradient: linear-gradient(to right, var(--I-600), var(--P-600));
+    --main-gradient: linear-gradient(to bottom right, var(--s-100), var(--s-50), var(--I-50-30));
+    --footer-gradient: linear-gradient(to right, var(--s-800), var(--s-900));
+}
+
+.py-12 {
+    padding-block: var(--rem-0-75);
+}
+
+.py-20 {
+    padding-block: var(--rem-1-25);
+}
+
+.p-20 {
+    padding: var(--rem-1-25);
+}
+
+.py-32 {
+    padding-block: var(--rem-2);
+}
+
+
+/* Header Styling */
+
+#header {
+    --bs-gradient: var(--header-gradient);
+
+    .header-icon {
+        width: var(--rem-2-5);
+        height: var(--rem-2-5);
+        background-color: var(--w-20);
+        transition: background-color 0.2s;
+    }
+
+    .header-icon:hover {
+        background-color: var(--w-30);
+    }
+
+}
+
+
+/* Modal Styling */
+
+#addTask {
+    .modal-header {
+        div {
+            width: var(--rem-2);
+            height: var(--rem-2);
+            color: var(--s-400);
+            transition: color 0.2s, background-color 0.2s;
+        }
+
+        div:hover {
+            color: var(--s-600);
+            background-color: var(--s-100);
+        }
+    }
+
+    .modal-body form {
+        #modal-buttons {
+            button:first-of-type {
+                background-color: var(--s-100);
+                color: var(--s-700);
+                transition: background-color 0.2s;
+            }
+
+            button:first-of-type:hover {
+                background-color: var(--s-200);
+            }
+
+            button:last-child, button:nth-child(2) {
+                background-color: var(--I-600);
+                color: white;
+                transition: background-color 0.2s;
+            }
+
+            button:last-child:hover, button:nth-child(2):hover {
+                background-color: var(--I-700);
+            }
+        }
+
+        label {
+            color: var(--s-700);
+            font-size: var(--rem-0-875);
+
+            span {
+                color: var(--red-500);
+            }
+        }
+
+        i {
+            color: var(--s-400);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--s-400);
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        textarea:focus,
+        input:focus,
+        select:focus {
+            box-shadow: 0 0 0 2px var(--I-500);
+            border: 2px solid var(--I-500);
+        }
+
+        .error {
+            font-size: var(--rem-0-75);
+            color: var(--red-500);
+        }
+
+        #charCount {
+            font-size: var(--rem-0-75);
+            color: var(--s-400);
+        }
+    }
+}
+
+/* Main Styling */
+
+#main {
+    --bs-gradient: var(--main-gradient);
+
+    .display-card {
+        --bs-bg-opacity: 0.6;
+        min-height: var(--rem-31);
+
+        header {
+            div:last-child {
+                p:last-child {
+                    font-size: var(--rem-0-75);
+                    color: var(--s-400);
+                }
+            }
+        }
+    }
+
+    .card-icon {
+        width: var(--rem-2-5);
+        height: var(--rem-2-5);
+    }
+
+    .gray-icon {
+        background-color: var(--s-100);
+
+        i {
+            color: var(--s-500);
+        }
+    }
+
+    .yellow-icon {
+        background-color: var(--a-50);
+
+        i {
+            color: var(--a-500);
+        }
+    }
+
+    .green-icon {
+        background-color: var(--e-50);
+
+        i {
+            color: var(--e-500);
+        }
+    }
+
+    .no-content {
+        color: var(--s-400);
+
+        i {
+            opacity: 0.4;
+            font-size: var(--rem-2-5);
+        }
+    }
+
+    .taskCard {
+
+        box-shadow: 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+        transition: box-shadow 0.2s;
+
+        &:hover {
+            box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+
+            .action-button {
+                opacity: 1;
+            }
+        }
+
+        .status-id {
+            div {
+                width: var(--rem-0-5);
+                height: var(--rem-0-5);
+            }
+
+            div.todo-icon {
+                background-color: var(--s-300);
+            }
+
+            div.start-icon {
+                background-color: var(--a-400);
+            }
+
+            div.complete-icon {
+                background-color: var(--e-400)
+            }
+
+            p {
+                color: var(--s-400);
+                font-size: var(--rem-0-625);
+            }
+        }
+
+        .action-button {
+            opacity: 0;
+            width: var(--rem-1-75);
+            height: var(--rem-1-75);
+            color: var(--s-400);
+            transition: color 0.3s, background-color 0.3s, opacity 0.3s;
+        }
+
+        .action-button:hover.edit-button {
+            color: var(--I-500);
+            background-color: var(--I-50);
+        }
+
+        .action-button:hover.delete-button {
+            color: var(--red-500);
+            background-color: var(--red-50);
+        }
+
+        .task-description {
+            color: var(--s-500);
+            font-size: var(--rem-0-875);
+        }
+
+        .details-card {
+            width: fit-content;
+
+            div {
+                width: var(--rem-0-375);
+                height: var(--rem-0-375);
+            }
+
+            p {
+                font-size: var(--rem-0-625);
+            }
+        }
+
+        .high-priority {
+            background-color: var(--red-50);
+            color: var(--red-600);
+
+            div {
+                background-color: var(--red-600);
+            }
+        }
+
+        .medium-priority {
+            background-color: var(--a-50);
+            color: var(--a-600);
+
+            div {
+                background-color: var(--a-600);
+            }
+        }
+
+        .low-priority {
+            background-color: var(--b-50);
+            color: var(--b-600);
+
+            div {
+                background-color: var(--b-600);
+            }
+        }
+
+        .time-details {
+            font-size: var(--rem-0-75);
+            color: var(--s-400);
+        }
+
+        .due-soon {
+            background-color: var(--o-100);
+            color: var(--o-600);
+        }
+
+        .deadline {
+            &.due-soon {
+                background-color: transparent;
+                color: var(--o-500);
+            }
+        }
+
+        .overdue {
+            background-color: var(--red-100);
+            color: var(--red-600);
+        }
+
+        .deadline {
+            &.overdue {
+                background-color: transparent;
+                color: var(--red-500);
+            }
+        }
+
+        .button {
+            font-size: var(--rem-0-6875);
+            cursor: default;
+
+            &.start {
+                color: var(--a-700);
+                background-color: var(--a-100);
+                transition: background-color 0.2s, scale 0.2s;
+
+                &:hover {
+                    background-color: var(--a-200);
+                    scale: 1.05;
+                }
+            }
+
+            &.complete {
+                color: var(--e-700);
+                background-color: var(--e-100);
+                transition: background-color 0.2s, scale 0.2s;
+
+                &:hover {
+                    background-color: var(--e-200);
+                    scale: 1.05;
+                }
+            }
+
+            &.todo {
+                color: var(--s-600);
+                background-color: var(--s-100);
+                transition: background-color 0.2s, scale 0.2s;
+
+                &:hover {
+                    background-color: var(--s-200);
+                    scale: 1.05;
+                }
+            }
+        }
+    }
+}
+
+
+/* Footer Styling */
+
+#footer {
+    --bs-gradient: var(--footer-gradient);
+
+    p {
+        color: var(--s-400);
+        font-size: var(--rem-0-875);
+
+        i {
+            color: var(--r-500);
+        }
+    }
+}
+
+#main-content{
+    min-height: 100vh;
+}

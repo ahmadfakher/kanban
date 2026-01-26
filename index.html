@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/all.min.css">
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body id="main-content" class="d-flex flex-column p-0">
+
+    <!-- Header Section Start -->
+    <header id="header" class="px-3 py-12 bg-gradient text-white shadow-sm position-sticky w-100 top-0">
+        <div class="d-flex justify-content-between align-items-center container-xl">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fa-solid fa-table-columns fa-xl"></i>
+                <h1 class="fw-bold h5 m-0">Kanban</h1>
+            </div>
+            <div id="add-task" class="d-flex align-items-center justify-content-center rounded-3 header-icon"
+                data-bs-toggle="modal" data-bs-target="#addTask">
+                <i class="fa-solid fa-plus fa-sm"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal Section Start -->
+    <div class="modal fade" id="addTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="addTaskLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header align-items-center justify-content-between">
+                    <p class="modal-title h5 m-0 fw-semibold" id="addTaskLabel">Create New Task</p>
+                    <div class="rounded-3 d-flex align-items-center justify-content-center" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-close"></i>
+                    </div>
+                </div>
+                <div class="modal-body p-20">
+                    <form>
+                        <div class="mb-3">
+                            <label for="titleInput" class="form-label fw-medium">
+                                <i class="fa-solid fa-heading fa-sm"></i>
+                                Task Title <span>*</span>
+                            </label>
+                            <input type="text" class="form-control px-3 py-2 rounded-3" id="titleInput"
+                                placeholder="What needs to be done?">
+                            <p id="titleError" class="m-0 error d-none">Task title is required</p>
+                        </div>
+                        <div class="d-flex gap-3 flex-column flex-md-row mb-3">
+                            <div class="w-100">
+                                <label class="form-label fw-medium">
+                                    <i class="fa-solid fa-flag fa-sm"></i>
+                                    Priority
+                                </label>
+                                <select id="priority-select" class="form-select px-3 py-2 rounded-3"
+                                    aria-label="Priority select">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="w-100">
+                                <label for="dateInput" class="form-label fw-medium">
+                                    <i class="fa-solid fa-calendar fa-sm"></i>
+                                    Due Date
+                                </label>
+                                <input type="date" class="form-control px-3 py-2 rounded-3" id="dateInput">
+                                <p id="dateError" class="m-0 error d-none">Due date cannot be in the past</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label fw-medium">
+                                <i class="fa-solid fa-align-left fa-sm"></i>
+                                Description
+                            </label>
+                            <textarea class="form-control rounded-3 px-3 py-2" id="description" rows="3"
+                                placeholder="Add more details about this task..." maxlength="500"></textarea>
+                            <div>
+                                <p id="charCount" class="mb-0 text-end">0/500</p>
+                            </div>
+                        </div>
+                        <div id="modal-buttons" class="d-flex gap-2">
+                            <button type="button" class="btn w-100 px-3 py-2 fw-medium"
+                                data-bs-dismiss="modal">Cancel</button>
+                            <button id="edit-button" type="button" class="btn w-100 px-3 py-2 fw-medium d-none"><i
+                                    class="fa-solid fa-save text-white"></i>
+                                Save changes</button>
+                            <button id="submit-button" type="button" class="btn w-100 px-3 py-2 fw-medium"><i
+                                    class="fa-solid fa-plus text-white"></i>
+                                Add Task</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Section Start -->
+    <main id="main" class="bg-gradient px-3 py-32">
+        <div class="row gx-0 gy-3 gx-md-3 gy-md-0 container-xl mx-auto">
+            <div class="col-12 col-md-4">
+                <div class="display-card rounded-4 p-4 bg-white shadow-sm d-flex flex-column">
+                    <header class="d-flex gap-2 align-items-center gap-2 mb-4">
+                        <div
+                            class="card-icon gray-icon rounded-3 me-1 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-clipboard-list fa-lg"></i>
+                        </div>
+                        <div>
+                            <p class="m-0 fw-semibold">To Do</p>
+                            <p class="m-0"><span id="todo-count">0</span> tasks</p>
+                        </div>
+                    </header>
+                    <main id="todo" class="h-100 flex-grow-1 d-flex flex-column gap-3">
+                    </main>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="display-card rounded-4 p-4 bg-white shadow-sm d-flex flex-column">
+                    <header class="d-flex gap-2 align-items-center gap-2 mb-4">
+                        <div
+                            class="card-icon yellow-icon rounded-3 me-1 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-spinner fa-lg"></i>
+                        </div>
+                        <div>
+                            <p class="m-0 fw-semibold">In Progress</p>
+                            <p class="m-0"><span id="progress-count">0</span> tasks</p>
+                        </div>
+                    </header>
+                    <main id="in-progress" class="h-100 flex-grow-1 d-flex flex-column gap-3">
+                    </main>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="display-card rounded-4 p-4 bg-white shadow-sm d-flex flex-column">
+                    <header class="d-flex gap-2 align-items-center gap-2 mb-4">
+                        <div
+                            class="card-icon green-icon rounded-3 me-1 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-circle-check fa-lg"></i>
+                        </div>
+                        <div>
+                            <p class="m-0 fw-semibold">Completed</p>
+                            <p class="m-0"><span id="complete-count">0</span> tasks</p>
+                        </div>
+                    </header>
+                    <main id="completed" class="h-100 flex-grow-1 d-flex flex-column gap-3">
+                    </main>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer Section Start -->
+    <footer id="footer" class="bg-gradient py-20 mt-auto">
+        <p class="m-0 text-center">Made with <i class="fa-solid fa-heart fa-fade"
+                style="--fa-animation-duration: 2s"></i> by Ahmad Fakher</p>
+    </footer>
+
+
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
