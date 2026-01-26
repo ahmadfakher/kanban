@@ -51,6 +51,7 @@ submitButton === null || submitButton === void 0 ? void 0 : submitButton.addEven
     if (titleValid && dateValid) {
         storeData();
         closeTaskModal();
+        showNotification("Task added successfully!", "#00bc7d");
     }
 });
 function closeTaskModal() {
@@ -465,6 +466,7 @@ function deletTask(deleteidx) {
     tasks.splice(deleteidx, 1);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     displayData();
+    showNotification("Task deleted successfully!", "#fb2c36");
 }
 // EDIT TASK
 function editTask(editidx) {
@@ -476,5 +478,17 @@ function editTask(editidx) {
         localStorage.setItem("tasks", JSON.stringify(tasks));
         displayData();
         closeTaskModal();
+        showNotification("Task updated successfully!", "#00bc7d");
     });
+}
+function showNotification(msg, color) {
+    const div = document.createElement("div");
+    div.className =
+        "position-fixed notification text-white px-4 py-3 rounded-4";
+    div.style.backgroundColor = color;
+    div.innerHTML = msg;
+    document.body.appendChild(div);
+    setTimeout(() => {
+        document.body.removeChild(div);
+    }, 3000);
 }

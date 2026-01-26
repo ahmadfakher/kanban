@@ -76,6 +76,11 @@
     padding-block: var(--rem-2);
 }
 
+.notification{
+    top: var(--rem-0-875);
+    right: var(--rem-0-875);
+    z-index: 90000;
+}
 
 /* Header Styling */
 

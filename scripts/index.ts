@@ -88,6 +88,7 @@ submitButton?.addEventListener("click", () => {
   if (titleValid && dateValid) {
     storeData();
     closeTaskModal();
+    showNotification("Task added successfully!", "#00bc7d");
   }
 });
 
@@ -537,6 +538,7 @@ function deletTask(deleteidx: number): void {
   tasks.splice(deleteidx, 1);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   displayData();
+  showNotification("Task deleted successfully!", "#fb2c36");
 }
 
 // EDIT TASK
@@ -549,5 +551,18 @@ function editTask(editidx: number): void {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     displayData();
     closeTaskModal();
+    showNotification("Task updated successfully!", "#00bc7d");
   });
+}
+
+function showNotification(msg : string, color: string) {
+  const div : HTMLDivElement = document.createElement("div");
+  div.className =
+    "position-fixed notification text-white px-4 py-3 rounded-4";
+  div.style.backgroundColor = color;
+  div.innerHTML = msg;
+  document.body.appendChild(div);
+  setTimeout(() => {
+    document.body.removeChild(div);
+  }, 3000);
 }
