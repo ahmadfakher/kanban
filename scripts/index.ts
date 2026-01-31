@@ -8,11 +8,7 @@ interface Task {
   createdAt: string;
 }
 
-let tasks: Task[] = [];
-if (localStorage.getItem("tasks")) {
-  tasks = JSON.parse(localStorage.getItem("tasks")!);
-}
-
+let tasks: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "[]");
 interface Priority {
   text: string;
   className: string;
@@ -172,7 +168,7 @@ function displayData(): void {
   let todoBlackbox = ``;
   let inprogressBlackBox = ``;
   let completedBlackBox = ``;
-  tasks = JSON.parse(localStorage.getItem("tasks")!);
+  tasks = JSON.parse(localStorage.getItem("tasks") ?? "[]");
 
   const { todoCount, inProgressCount, completedCount } = getTaskCounts();
   document.getElementById("complete-count")!.innerHTML = `${completedCount}`;
@@ -555,10 +551,9 @@ function editTask(editidx: number): void {
   });
 }
 
-function showNotification(msg : string, color: string) {
-  const div : HTMLDivElement = document.createElement("div");
-  div.className =
-    "position-fixed notification text-white px-4 py-3 rounded-4";
+function showNotification(msg: string, color: string) {
+  const div: HTMLDivElement = document.createElement("div");
+  div.className = "position-fixed notification text-white px-4 py-3 rounded-4";
   div.style.backgroundColor = color;
   div.innerHTML = msg;
   document.body.appendChild(div);
