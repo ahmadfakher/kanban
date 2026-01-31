@@ -502,7 +502,7 @@ function dateDiff(date: Date): string {
   const todayDate: Date = new Date();
   const diff: number = date.getTime() - todayDate.getTime();
   const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-  if (diffDays < 1) {
+  if (diffDays <= 0) {
     return "overdue";
   } else if (diffDays <= 2) {
     return "soon";

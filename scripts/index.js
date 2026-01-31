@@ -259,7 +259,7 @@ function dateDiff(date) {
     var todayDate = new Date();
     var diff = date.getTime() - todayDate.getTime();
     var diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-    if (diffDays < 1) {
+    if (diffDays <= 0) {
         return "overdue";
     }
     else if (diffDays <= 2) {
